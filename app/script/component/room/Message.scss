@@ -1,0 +1,61 @@
+@import '../../../style/variables-mixin.scss';
+.msgs-wrapper {
+  overflow-y: hidden;
+  position:relative;
+  flex: 1;
+  display: flex;
+  .msgs-scroll-div {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width:100%;
+    // display: flex;
+    // flex-direction: column;
+    // height:auto;
+    .msgs-div {
+      .day-container {
+        border-top: 1px solid #e8e8e8;
+        padding:20px;
+        margin-top:20px;
+        position:relative;
+        .day-divider {
+          background:#fff;
+          position:absolute;
+          line-height:24px;
+          font-weight:700;
+          top:-12px;
+          left: 50%;
+          transform: translate(-50%, 0);
+          padding:0 10px;
+        }
+        .msg-container {
+          padding:5px 0;
+          @include clearfix;
+          .user-avatar {
+            width:36px;
+            height:36px;
+            overflow:hidden;
+            border-radius:3px;
+            float:left;
+            img {
+              width:100%;
+            }
+          }
+          .msg-content {
+            margin-left:45px;
+            .msg-content-header {
+              line-height:18px;
+              .msg-author {
+                font-weight:900;
+              }
+              .msg-create-date {
+                color:#717274;
+                font-size:12px;
+                margin-left:10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

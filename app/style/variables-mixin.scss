@@ -1,0 +1,15 @@
+$text-color:#000;
+$sidebar-bg:#4d394b;
+$active-color:#4c9689;
+
+
+@mixin clearfix {
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+

@@ -1,0 +1,36 @@
+@import '../../../style/icon.scss';
+.side-bar {
+  color: rgb(202,196,201);
+  font-size:16px;
+  line-height:26px;
+  .user-box {
+    height:65px;
+    .team-name {
+      color:#fff;
+      font-size:18px;
+      font-weight:900;
+    }
+    .team-user-name {
+      font-size:14px;
+    }
+    .team-user-status {
+    }
+  }
+  .cat-title {
+    margin-top:18px;
+  }
+  .user-status {
+    font-size: 10px;
+    line-height: 26px;
+    margin-right: 5px;
+    &.online {
+      @extend .icon;
+      @extend .icon-circle;
+      color: #38978d;
+    }
+    &.offline {
+      @extend .icon;
+      @extend .icon-circle-o;
+    }
+  }
+}

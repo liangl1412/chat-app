@@ -1,0 +1,52 @@
+.channel-footer {
+  padding:0 20px 20px;
+  color:#a0a0a2;
+  .msg-form {
+    .input-wrapper {
+      border:2px solid rgba(160,160,162,.7);
+      border-radius:5px;
+      min-height:40px;
+      display:flex;
+      .file-btn {
+        font-size:20px;
+        width:44px;
+        text-align:center;
+        border-right:2px solid rgba(160,160,162,.7);
+      }
+      .metion-btn {
+        font-size:20px;
+      }
+      .emo-btn {
+        font-size:20px;
+        margin:0 5px;
+      }
+      .msg-input {
+        border:none;
+        outline:none;
+        padding: 10px;
+        font-size: 15px;
+        flex-grow: 1;
+      }
+      &.active {
+        border-color:#717274;
+        .file-btn {
+          border-color:#717274;
+        }
+      }
+    }
+  }
+  .typing-wrapper {
+    font-size:13px;
+    padding-left:50px;
+    strong {
+      font-weight:700;
+    }
+  }
+
+}
+.primary-btn {
+  color: #a0a0a2;
+  border:none;
+  background:none;
+  outline:none;
+}
