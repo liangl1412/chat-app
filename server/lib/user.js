@@ -32,6 +32,12 @@ export function createUser(email, profile) {
     });
 }
 
-export function addFriend(data) {
-    
+export function addFriend(userId, friend) {
+    User.findByIdAndUpdate(
+        userId, 
+        {$addToSet: { friendLists: friend } },
+        (err, user) => {
+            console.log(user);
+        }
+    );
 }
