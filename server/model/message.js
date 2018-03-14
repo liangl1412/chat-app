@@ -8,6 +8,7 @@ const messageSchema = new Schema({
     text: String,
     conversationId: String 
 })
+//this is test
 
 const Message = mongoose.model('message', messageSchema);
 
