@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 
 const conversationSchema = new Schema({
   conversationId: mongoose.Types.ObjectId,
+  conversationName: String,
+  conversatioOwner: Array,
+  type: String,
   members: Array,
   messages: Array  
 })
