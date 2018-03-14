@@ -8,7 +8,7 @@ const messageSchema = new Schema({
     text: String,
     conversationId: String 
 })
-
+//this is second test
 const Message = mongoose.model('message', messageSchema);
 
 module.exports = Message;
