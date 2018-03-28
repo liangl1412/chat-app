@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack",
+    "start": "webpack --config ./client/webpack.config.js",
     "server": "nodemon ./server/index.js --exec babel-node --presets babel-preset-env --ignore 'node_modules/*'",
     "debug": "nodemon ./server/index.js --inspect --exec babel-node --presets babel-preset-env --ignore 'node_modules/*'"
   },

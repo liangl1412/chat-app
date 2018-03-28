@@ -12,7 +12,7 @@ class SideBar extends React.Component {
         <div className="channel-lists">
           <h2 className="cat-title">Channels</h2>
           <ul>
-            <li># company_event</li>
+            <li># company_events</li>
             <li># ea-crm</li>
             <li># epic-vancouver</li>
             <li># frontend</li>

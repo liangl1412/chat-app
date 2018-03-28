@@ -1,17 +1,10 @@
 import path from 'path';
 import Express from 'express';
 import socket from 'socket.io';
-
 import passportSetup from './config/passport';
 import mongoose from 'mongoose';
-
 import config from './config/config';
 import authRoute from './route/auth-route';
-import { renderToString } from 'react-dom/server'
-import { Provider } from "react-redux"
-import React from 'react'
-
-
 import renderHtml from './renderHtml';
 import cookieSession from 'cookie-session';
 import passport from 'passport';
@@ -22,7 +15,7 @@ mongoose.connect(config.mongodb.host, () => {
 });
 const db = mongoose.connection;
 
-app.use(Express.static(path.resolve(__dirname, '..', 'dist')));
+app.use(Express.static(path.resolve(__dirname, '../public')));
 
 
 // const data = [
