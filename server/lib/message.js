@@ -1,32 +1,29 @@
-import Conversation from '../model/conversation';
+import Message from '../model/message';
 
-export function fetchMsgs(id, type) {
-    if(type == 'conversation') {
-        return new Promise((resolve, reject) => {
-            Conversation.findById(
-                id,
-                'messages',
-                (err, messages) => {
-                    if (messages) {
-                        return resolve(user);
-                    }
-                    return reject('can not find record with conversationid: ' + id);
-                }
-            )
+export function fetchMsgs(conversationId) {
+    return new Promise((resolve, reject) => {
+        Message.find({conversationId: conversationId}, (err, msgs) => {
+            if(msgs) {
+                return resolve(msgs);
+            }
+            return reject('can not find record with email: '+ email);
         })
-    } else if (type == 'channel') {
-        return new Promise((resolve, reject) => {
-            Channel.findById(
-                id,
-                'messages',
-                (err, messages) => {
-                    if (messages) {
-                        return resolve(user);
-                    }
-                    return reject('can not find record with channelid: ' + id);
-                }
-            )
+    })
+}
+
+export function createMsg(conversationId, msg) {
+    return new Promise((resolve, reject) => {
+        new Message({
+            conversationId: conversationId,
+            messageAuthor: msg.author,
+            text: msg.text,
+            timeCreated: msg.timeCreated
         })
-    }
-    
+        .save((err, result) => {
+            if (result) {
+                return resolve(result)
+            }
+            return reject('unable to create new conversation');
+        })
+    });
 }
