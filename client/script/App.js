@@ -12,8 +12,7 @@ class App extends React.Component {
       <div className="room-view-container">
         <Switch>
             <Route path="/" exact component={RoomView} />
-            <Route path="/messages" component={HomeView} />
-            <Route path="/messages/:messageId" component={RoomView} />
+            <Route path="/messages/:id" component={RoomView} />
             
         </Switch>
       </div>

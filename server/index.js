@@ -5,16 +5,20 @@ import passportSetup from './config/passport';
 import mongoose from 'mongoose';
 import config from './config/config';
 import authRoute from './route/auth-route';
+import userRoute from './route/user';
 import renderHtml from './renderHtml';
 import cookieSession from 'cookie-session';
 import passport from 'passport';
+import bodyParser from 'body-parser';
+import { addFriend, findAllUsers } from './lib/user';
 const app = Express();
 // connect to mongodb
 mongoose.connect(config.mongodb.host, () => {
   console.log('db connected');
 });
-const db = mongoose.connection;
 
+const db = mongoose.connection;
+mongoose.set('debug', true);
 app.use(Express.static(path.resolve(__dirname, '../public')));
 
 
@@ -40,14 +44,7 @@ app.use(Express.static(path.resolve(__dirname, '../public')));
 //     ts:"1519693003"
 //   }
 // ]
-const initState = {
-  users: {
-    currentUser:{},
-    friendLists:[],
-    channelLists:[],
-    error:null
-  }
-}
+
 
 
 // app.get('/getMessages',function(req,res){
@@ -58,27 +55,36 @@ app.use(cookieSession({
   maxAge: 24*60*60*1000,
   keys:[config.session.cookieKey]
 }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 //init passport
 app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', authRoute);
+app.use('/user', userRoute);
 
 
-const authCheck = (req, res, next) => {
-  if(!req.user){
-    initState.users.currentUser = 'guest';
-  } else {
-    initState.users.currentUser = req.user.username;
+const initData = async (req, res) => {
+  let initState = {
+    user: {}
   }
-  next();
-};
+  if(!req.user){
+    initState.user.username = 'guest';
+  } else {
+    initState.user = req.user;
+    const users = await findAllUsers();
+    initState.user.recentConversation = users;
+  }
 
-app.get('*',  authCheck, (req, res) => {
-  // res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'));
-  //res.send(renderHtml(data));
   res.send(renderHtml(initState));
+}
+
+app.get('*',  (req, res) => {
+  initData(req, res);
 })
 
 
@@ -86,7 +92,6 @@ app.get('*',  authCheck, (req, res) => {
 const server = app.listen(3000,function(){
   console.log('listening port 3000');
 })
-
 
 
 const io = socket(server);

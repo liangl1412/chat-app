@@ -6,8 +6,7 @@ const userSchema = new Schema({
   googleid: String,
   email: String,
   avatar: String,
-  friendLists: Array,
-  channelLists: Array
+  recentConversation: Array
 })
 
 const User = mongoose.model('user', userSchema);

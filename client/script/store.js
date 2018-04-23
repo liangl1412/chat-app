@@ -7,6 +7,6 @@ import rootReducer from "./reducers"
 
 const middleware = applyMiddleware(promise(), thunk)
 //const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, {users:window.__INITIAL_STATE__.users},middleware);
+const store = createStore(rootReducer, {user:window.__INITIAL_STATE__.user},middleware);
 console.log(store.getState());
 export default store;

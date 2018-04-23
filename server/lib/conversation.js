@@ -1,10 +1,11 @@
 import Conversation from '../model/conversation';
 
 
-export function createConversation(name, members, type) {
+export function createConversation(name, members, owner, type) {
     return new Promise((resolve, reject) => {
         new Conversation({
             conversationName: name,
+            conversatioOwner: onwer,
             members: members,
             type: type
         })

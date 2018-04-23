@@ -14,7 +14,7 @@ const socket = socketIOClient('http://localhost:3000');
 @connect((store) => {
   return {
     messages: store.messages.messages,
-    users:store.users
+    user:store.user
   };
 })
 
@@ -35,7 +35,7 @@ class RoomView extends React.Component {
   createMsg(data) {
     socket.emit('chat', {
       text:data,
-      user:this.props.users.currentUser,
+      user:this.props.user.username,
       ts:Math.floor(Date.now() / 1000)
     })
   }
@@ -55,11 +55,11 @@ class RoomView extends React.Component {
   render() {
     return(
       <div className="room-view">
-        <SideBar />
+        <SideBar recentList={this.props.user.recentConversation}/>
         <div className="channel-wrapper">
           <Header />
           <Message messages={this.props.messages}/>
-          <Footer createMsg={this.createMsg.bind(this)} socket={socket} user={this.props.users.currentUser}/>
+          <Footer createMsg={this.createMsg.bind(this)} socket={socket} user={this.props.user.username}/>
         </div>
       </div>
     );

@@ -1,5 +1,5 @@
 import User from '../model/user';
-
+import mongoose from 'mongoose';
 
 export function findById(userid) {
    
@@ -32,12 +32,14 @@ export function createUser(email, profile) {
     });
 }
 
-export function addFriend(userId, friend) {
-    User.findByIdAndUpdate(
-        userId, 
-        {$addToSet: { friendLists: friend } },
-        (err, user) => {
-            console.log(user);
-        }
-    );
+export function findAllUsers() {
+    return User.find({},'username email').exec();
+}
+
+export function addRecentConversation(userId, conversation) {
+    return User.findByIdAndUpdate(
+        mongoose.Types.ObjectId(userId), 
+        {$addToSet: { recentConversation: conversation }},
+        {new: true}
+    ).exec();
 }

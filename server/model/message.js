@@ -2,14 +2,11 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const messageSchema = new Schema({
-    messageId: mongoose.Types.ObjectId,
-    messageAuthor: String,
+    from: mongoose.Types.ObjectId,
     timeCreated: Number,
     text: String,
     conversationId: String 
 })
-//this is second test
-//asdkjfskajdkfl
+
 const Message = mongoose.model('message', messageSchema);
-//adsfksakjls
 module.exports = Message;
